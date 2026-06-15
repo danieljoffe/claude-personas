@@ -7,6 +7,10 @@ they were written in.
 This repo is **both the marketplace and the plugin** (`marketplace.json` →
 `"source": "./"`).
 
+> **Built with Claude Code.** The personas are designed for, and developed
+> with, [Claude Code](https://claude.com/claude-code). Contributions are
+> welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
 ## What's in it
 
 **Phase 1 — domain auditors (this release)**
