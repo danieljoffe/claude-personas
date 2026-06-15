@@ -1,0 +1,14 @@
+{
+  "stack": ["python", "fastapi", "supabase-postgres"],
+  "paths": {
+    "code": ["apps/*/app"],
+    "migrations": ["supabase/migrations"],
+    "tests": ["apps/*/tests"]
+  },
+  "outOfScope": [
+    "**/node_modules/**",
+    "**/.venv/**",
+    "**/__pycache__/**",
+    "**/*.lock"
+  ]
+}

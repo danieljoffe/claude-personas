@@ -1,0 +1,15 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "danieljoffe",
+  "description": "Daniel Joffe's personal Claude Code marketplace.",
+  "owner": { "name": "Daniel Joffe" },
+  "plugins": [
+    {
+      "name": "personas",
+      "source": "./",
+      "description": "Expert auditor personas (Python/FastAPI, SQL/Postgres, security) + a /audit orchestrator for domain critiques across repos.",
+      "category": "development",
+      "author": { "name": "Daniel Joffe" }
+    }
+  ]
+}

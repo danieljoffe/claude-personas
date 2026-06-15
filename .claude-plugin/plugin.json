@@ -1,0 +1,10 @@
+{
+  "name": "personas",
+  "version": "0.1.0",
+  "description": "A repertoire of expert auditor personas (Python/FastAPI, SQL/Postgres, security) plus an orchestrating /audit skill, installable into any repo to run domain critiques and audits.",
+  "author": { "name": "Daniel Joffe" },
+  "homepage": "https://github.com/danieljoffe/claude-personas",
+  "repository": "https://github.com/danieljoffe/claude-personas",
+  "license": "MIT",
+  "keywords": ["audit", "review", "personas", "python", "fastapi", "postgres", "supabase", "security"]
+}
