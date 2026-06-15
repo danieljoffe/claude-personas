@@ -18,5 +18,16 @@
     "audience": "in-house technical recruiter sourcing a senior full-stack engineer",
     "goal": "decide in ~45 seconds whether this candidate is worth a screen",
     "context": "the site positions a senior full-stack + AI engineer who is open to full-time roles"
+  },
+  "harness": {
+    "claudeMd": ["CLAUDE.md"],
+    "configRoot": ".claude",
+    "alwaysLoaded": ["CLAUDE.md", ".claude/docs/architecture.md", ".claude/docs/coding-conventions.md"],
+    "outOfScope": [
+      ".claude/sessions/**",
+      ".claude/scratch/**",
+      ".claude/worktrees/**",
+      ".claude/agent-memory/**"
+    ]
   }
 }

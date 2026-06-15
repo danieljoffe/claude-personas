@@ -7,7 +7,7 @@
     {
       "name": "personas",
       "source": "./",
-      "description": "Expert auditor personas (Python/FastAPI, SQL/Postgres, security) + a /audit orchestrator for domain critiques across repos.",
+      "description": "Expert auditor personas — code (Python/FastAPI, SQL/Postgres, security), live-UI critics, and a meta auditor of the Claude Code harness itself — with /audit, /panel, and /harness orchestrators for any repo.",
       "category": "development",
       "author": { "name": "Daniel Joffe" }
     }
