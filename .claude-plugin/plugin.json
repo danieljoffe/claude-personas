@@ -1,10 +1,10 @@
 {
   "name": "personas",
-  "version": "0.1.0",
-  "description": "A repertoire of expert auditor personas (Python/FastAPI, SQL/Postgres, security) plus an orchestrating /audit skill, installable into any repo to run domain critiques and audits.",
+  "version": "0.2.0",
+  "description": "A repertoire of expert auditor personas — code (Python/FastAPI, SQL/Postgres, security), live-UI critics (accessibility, design, UX), and a meta auditor of the Claude Code harness itself — plus /audit, /panel, and /harness orchestrators, installable into any repo.",
   "author": { "name": "Daniel Joffe" },
   "homepage": "https://github.com/danieljoffe/claude-personas",
   "repository": "https://github.com/danieljoffe/claude-personas",
   "license": "MIT",
-  "keywords": ["audit", "review", "personas", "python", "fastapi", "postgres", "supabase", "security"]
+  "keywords": ["audit", "review", "personas", "python", "fastapi", "postgres", "supabase", "security", "accessibility", "design", "ux", "harness", "claude-code", "agent-config", "context-engineering", "meta"]
 }
