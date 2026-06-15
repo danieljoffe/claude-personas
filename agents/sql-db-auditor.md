@@ -22,6 +22,7 @@ Audit the migrations and DB-touching code handed to you (or the `migrations` pat
 - Policy performance: `auth.uid()` / `current_setting(...)` called per-row instead of wrapped `(select auth.uid())` so Postgres caches it — a classic Supabase scaling footgun.
 - Missing policies for one of SELECT/INSERT/UPDATE/DELETE where the table is writable from the client.
 - service-role assumptions: writes that rely on bypassing RLS should be clearly server-only, never reachable with the anon key.
+- **Grant reachability drives severity.** A `SECURITY DEFINER` writer or `USING (true)` table `GRANT`ed to `anon`/`authenticated` is a HIGH only if that role is reachable by untrusted clients — i.e. the anon key is shipped to the browser (`NEXT_PUBLIC_*` / `createBrowserClient`) or PostgREST is publicly exposed. Confirm this (check the frontend) before ranking; if you can't confirm it from the code handed to you, flag the grant anyway and state the assumption the severity rests on rather than guessing it safe.
 
 **Performance / schema design**
 - Foreign keys without a covering index on the referencing column (slow joins + slow cascade deletes).
@@ -41,4 +42,4 @@ Audit the migrations and DB-touching code handed to you (or the `migrations` pat
 
 ## Output
 
-Group by area (Migration safety / RLS / Performance / Functions). Each: `**<file>:<line>** (HIGH|MEDIUM|LOW)` → issue + one-line *why it matters* + fix (with the corrected SQL where short). HIGH = data loss, RLS hole, or production-locking migration. End with counts + a one-line verdict on schema health.
+Group by area (Migration safety / RLS / Performance / Functions). Each: `**<file>:<line>** (HIGH|MEDIUM|LOW)` → issue + one-line *why it matters* + fix (with the corrected SQL where short). For RLS/grant findings, note the **reachability assumption** the severity depends on. HIGH = data loss, an RLS hole reachable by an untrusted role, or a production-locking migration. End with counts + a one-line verdict on schema health.
