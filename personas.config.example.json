@@ -10,5 +10,13 @@
     "**/.venv/**",
     "**/__pycache__/**",
     "**/*.lock"
-  ]
+  ],
+  "web": {
+    "url": "http://localhost:3000",
+    "viewport": "1440x900",
+    "targetType": "site",
+    "audience": "in-house technical recruiter sourcing a senior full-stack engineer",
+    "goal": "decide in ~45 seconds whether this candidate is worth a screen",
+    "context": "the site positions a senior full-stack + AI engineer who is open to full-time roles"
+  }
 }

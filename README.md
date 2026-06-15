@@ -22,11 +22,21 @@ These cover the Python/SQL/security surface that's easy to under-review when you
 strengths are elsewhere (e.g. front-end). They report HIGH-confidence findings only,
 with `file:line` + severity + a concrete fix.
 
-**Phase 2 — embodied/browser personas (planned)**
+**Phase 2 — experiential/browser personas (this release: the universal three)**
 
-Port the experiential critics (design-reviewer, consuming-app-engineer,
-accessibility-specialist, tech-recruiter) + a `/personas:panel` browser smoketest,
-with a web-target binding (URLs).
+| Persona / skill          | Lens                                                                      |
+| ------------------------ | ------------------------------------------------------------------------ |
+| `accessibility-specialist` | Deep WCAG 2.1 AA — keyboard, focus management, ARIA, contrast.          |
+| `design-reviewer`        | Visual craft — spacing rhythm, type scale, token taste, motion, cohesion. |
+| `ux-first-impression`    | A configurable audience's snap first-pass — friction, bounce, advance/pass.|
+| `/personas:panel`        | Orchestrator — runs the critics against a live URL (sequentially), synthesizes. |
+
+These drive a real browser (Playwright MCP) against a live URL and return in-character
+verdicts. They run **sequentially** — Playwright is one shared browser.
+
+**Phase 2 (still to come):** the two component-library critics — `design-systems-engineer`
+(API/system credibility) and `consuming-app-engineer` (adoption/DX) — which apply when
+`targetType: storybook`.
 
 ## Install
 
@@ -42,8 +52,8 @@ claude plugin install personas@danieljoffe
 `/plugin install personas@danieljoffe`.)
 
 > **Restart your session after installing.** A plugin's skills and agents register
-> at session start, so `/personas:audit` and the `python-fastapi-auditor` /
-> `sql-db-auditor` / `security-auditor` subagents won't be available until you do.
+> at session start, so the `/personas:audit` and `/personas:panel` skills and their
+> subagents won't be available until you do.
 
 ## Use
 
@@ -63,7 +73,19 @@ You get a verdict (BLOCK / NEEDS-ATTENTION / HEALTHY), a severity table, finding
 grouped by severity, and a one-line entry appended to
 `.claude/personas-audit-log.md`.
 
-The auditors are **read-only** — they never edit or commit. Ask separately if you
+For an experiential critique of a live surface (needs the `web` block in the config,
+and Playwright MCP connected):
+
+```
+/personas:panel https://ui.example.com --type storybook
+/personas:panel http://localhost:3000 --type site
+/personas:panel --personas a11y,design          # subset, URL from the binding
+```
+
+You get a panel verdict plus a section per persona in their own voice, and a one-line
+entry in `.claude/personas-panel-log.md`.
+
+Every persona is **read-only** — they never edit or commit. Ask separately if you
 want the findings fixed.
 
 ## Layout
@@ -72,8 +94,12 @@ want the findings fixed.
 .claude-plugin/
   plugin.json          # plugin manifest
   marketplace.json     # marketplace manifest (self-referential source)
-agents/                # the auditor personas (auto-discovered)
-skills/audit/SKILL.md  # the /personas:audit orchestrator
+agents/                # all personas (auto-discovered)
+  python-fastapi-auditor.md  sql-db-auditor.md  security-auditor.md   # code auditors
+  accessibility-specialist.md  design-reviewer.md  ux-first-impression.md  # browser critics
+skills/
+  audit/SKILL.md       # the /personas:audit orchestrator (reads code)
+  panel/SKILL.md       # the /personas:panel orchestrator (drives the browser)
 docs/binding.md        # how the per-repo binding works
 personas.config.example.json
 ```
