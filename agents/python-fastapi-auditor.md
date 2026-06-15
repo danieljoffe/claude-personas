@@ -12,7 +12,7 @@ Audit the code paths handed to you by the orchestrator (or the `code`/`tests` pa
 ## What to check
 
 **Async correctness (highest value — easy to get subtly wrong)**
-- Blocking I/O inside `async def` (sync DB drivers, `requests`, `time.sleep`, file I/O, CPU-bound work) that stalls the event loop — should be awaited async equivalents or offloaded via `run_in_executor` / `anyio.to_thread`.
+- Blocking I/O inside `async def` (sync DB drivers, `requests`, `time.sleep`, file I/O, CPU-bound work) that stalls the event loop — should be awaited async equivalents or offloaded via `run_in_executor` / `anyio.to_thread`. **Before flagging, confirm three things or you'll false-positive:** (1) the call is genuinely inside an `async def` — a plain `def` route/handler is already run in FastAPI's threadpool and is fine; (2) it isn't already wrapped in `to_thread`/`run_in_executor`; (3) cite the exact call line, not a docstring or signature line. Verify against the live code, not a remembered earlier scan — handlers get fixed between runs.
 - Missing `await` on coroutines (silently creates a coroutine object that never runs).
 - Fire-and-forget `asyncio.create_task` with no reference kept (task can be GC'd) or no exception handling.
 - Shared mutable state across concurrent requests; non-thread-safe clients reused unsafely.
