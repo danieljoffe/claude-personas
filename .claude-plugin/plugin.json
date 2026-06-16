@@ -1,6 +1,6 @@
 {
   "name": "personas",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A repertoire of expert auditor personas — code (Python/FastAPI, SQL/Postgres, security), live-UI critics (accessibility, design, UX), and a meta auditor of the Claude Code harness itself — plus /audit, /panel, and /harness orchestrators, installable into any repo.",
   "author": { "name": "Daniel Joffe" },
   "homepage": "https://github.com/danieljoffe/claude-personas",
